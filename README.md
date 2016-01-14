@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/abelboldu/ansible-midonet-agent.svg?branch=master)](https://travis-ci.org/abelboldu/ansible-midonet-agent)
+
+
 midonet-agent
 =============
 
@@ -55,5 +58,4 @@ License
 
 Apache 2.0
 
-Author Information
-------------------
+
