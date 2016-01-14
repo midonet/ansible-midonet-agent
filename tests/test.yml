@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: abelboldu.midonet-repos
+      midonet_version: current
+    - role: midonet-agent
+      zookeeper_hosts: '{{ groups["all"] }}'
+      midonet_password: 'midonet'

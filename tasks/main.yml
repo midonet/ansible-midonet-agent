@@ -1,0 +1,12 @@
+---
+
+- meta: flush_handlers
+#- include: facts.yml
+- include: packages_redhat.yml
+  when: ansible_os_family == 'RedHat'
+- include: packages_debian.yml
+  when: ansible_os_family == 'Debian'
+- include: configuration.yml
+- meta: flush_handlers
+- include: tunnel-zone.yml
+  when: tz_name is defined and tz_type is defined
