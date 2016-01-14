@@ -5,6 +5,8 @@
   roles:
     - role: abelboldu.midonet-repos
       midonet_version: current
+    - role: abelboldu.zookeeper
+      zookeeper_hosts: '{{ groups["all"] }}'
     - role: ansible-midonet-agent
       zookeeper_hosts: '{{ groups["all"] }}'
       midonet_password: 'midonet'

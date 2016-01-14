@@ -2,7 +2,7 @@
 
 - name: Install Midolman
   apt: name=midolman state=latest install_recommends=no update_cache=yes
-  sudo: yes
+  become: yes
 
 - name: Install midonet client
   apt: name=python-midonetclient state=present

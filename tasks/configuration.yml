@@ -9,11 +9,7 @@
   delay: 10
 
 - name: Create midonetrc
-  ini_file: dest=/root/.midonetrc section=cli option={{ item.option }} value={{ item.value }}
-  with_items:
-    - { option: 'api_url', value: "http://{{ midonet_api_hostname }}:{{ midonet_api_port }}/midonet-api" }
-    - { option: 'username', value: '{{ midonet_username }}' }
-    - { option: 'password', value: "{{ midonet_password }}" }
-    - { option: 'project_id', value: '{{ midonet_project }}' }
+  template: src=midonetrc.j2 dest=/root/.midonetrc owner=root group=root
+  become: yes
   notify:
     - Restart midolman
