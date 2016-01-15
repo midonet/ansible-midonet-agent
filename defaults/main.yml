@@ -1,9 +1,9 @@
 ---
 
-midonet_api_hostname: localhost
+cluster_hostname: localhost
 tunnel_ip: '{{ ansible_default_ipv4 }}'
 tz_type: vxlan
-midonet_username: admin
-midonet_project: admin
-midonet_api_port: 8181
+cluster_username: admin
+cluster_project: admin
+cluster_port: 8181
 agent_template: agent-compute-medium

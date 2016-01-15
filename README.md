@@ -18,7 +18,7 @@ Role Variables
 * Required:
 
 `zookeeper_hosts` should be a dictionary or group in hosts inventory with all zookeeper members.
-`midonet_password` is the administration password needed for midonet API.
+`cluster_password` is the administration password needed for midonet cluster API.
 
 * Not Required:
 
@@ -57,5 +57,3 @@ License
 -------
 
 Apache 2.0
-
-
