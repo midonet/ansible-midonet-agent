@@ -34,6 +34,12 @@ If `tz_name` is defined, host will be added to the specified tunnel zone.
 
 The rest of midonet variables should be configured in midonet-cluster role.
 
+Use zk_iface variable if zookeeper is listening in other interface than ansible_default_ipv4.
+For example:
+```
+zk_iface: "eth1"
+```
+
 Dependencies
 ------------
 
@@ -44,7 +50,7 @@ Example Playbook
 ----------------
 
 ```
-- hosts: zookeeper
+- hosts: compute
     roles:
       - role: abelboldu.midonet-agent
         zookeeper_hosts: '{{ groups["zookeeper"] }}'
