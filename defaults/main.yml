@@ -7,3 +7,4 @@ cluster_username: admin
 cluster_project: admin
 cluster_port: 8181
 agent_template: agent-compute-medium
+mem_jmxscraper: False

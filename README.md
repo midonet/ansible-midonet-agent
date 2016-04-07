@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/abelboldu/ansible-midonet-agent.svg?branch=master)](https://travis-ci.org/abelboldu/ansible-midonet-agent)
+[![Build Status](https://travis-ci.org/midonet/ansible-midonet-agent.svg?branch=master)](https://travis-ci.org/midonet/ansible-midonet-agent)
 
 
 midonet-agent
