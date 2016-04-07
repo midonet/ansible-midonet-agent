@@ -2,7 +2,17 @@
 
 - hosts: localhost
   remote_user: root
+
+  pre_tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository: repo='ppa:openjdk-r/ppa'
+      when: ansible_os_family == 'Debian'
+
   roles:
+    - role: geerlingguy.java
+      when: ansible_os_family == 'Debian'
+      java_packages:
+        - openjdk-8-jdk
     - role: abelboldu.midonet-repos
       midonet_version: current
     - role: abelboldu.zookeeper

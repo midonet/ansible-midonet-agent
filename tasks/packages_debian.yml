@@ -1,11 +1,11 @@
 ---
 
-- name: Install PPA for Java8
-  apt_repository: repo='ppa:openjdk-r' 
-
 - name: Install Midolman
   apt: name=midolman state=latest install_recommends=no update_cache=yes
-  become: yes
 
 - name: Install midonet client
   apt: name=python-midonetclient state=present
+
+- name: Install MEM jmxscraper
+  apt: name=midonet-jmxscraper state=present
+  when: mem_jmxscraper
