@@ -1,7 +1,7 @@
 ---
 
 cluster_hostname: localhost
-tunnel_ip: '{{ ansible_default_ipv4 }}'
+tunnel_ip: "{{ ansible_default_ipv4 }}"
 tz_type: vxlan
 cluster_username: admin
 cluster_project: admin

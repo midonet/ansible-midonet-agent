@@ -29,3 +29,6 @@ script:
 
   # Check if midolman is running
   - sudo ps auxf | grep [m]idolman
+
+  # Check midonetrc
+  - sudo cat /root/.midonetrc
