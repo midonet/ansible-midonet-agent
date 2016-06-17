@@ -1,17 +1,29 @@
 ---
 
-- hosts: localhost
+- hosts: compute
   remote_user: root
+  become: True
+  tasks:
+    - name: Install repo for Java 8 in Ubuntu 14.04
+      apt_repository: repo='ppa:openjdk-r/ppa'
+      when: "ansible_distribution_release == 'trusty'"
 
+- hosts: compute
+  remote_user: root
+  become: True
   roles:
     - role: geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
       java_packages:
         - openjdk-8-jdk
-      when: ansible_os_family == 'Debian'
+    - role: geerlingguy.java
+      when: "ansible_os_family == 'RedHat'"
+      java_packages:
+        - java-1.8.0-openjdk
     - role: abelboldu.midonet-repos
       midonet_version: current
     - role: abelboldu.zookeeper
-      zookeeper_hosts: '{{ groups["all"] }}'
+      zookeeper_hosts: '{{ groups["compute"] }}'
     - role: ansible-midonet-agent
-      zookeeper_hosts: '{{ groups["all"] }}'
+      zookeeper_hosts: '{{ groups["compute"] }}'
       cluster_password: 'midonet'
