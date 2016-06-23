@@ -27,3 +27,4 @@
     - role: ansible-midonet-agent
       zookeeper_hosts: '{{ groups["agent"] }}'
       cluster_password: 'midonet'
+      max_heap_size: "512M"
