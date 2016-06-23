@@ -45,8 +45,8 @@ Vagrant.configure(2) do |config|
   set_hardware config, :virtualbox
 
 # NOTE: Use only one config, either ubuntu or centos, depending upon your requirement.
-  start config, "baremettle/ubuntu-14.04", "ubuntu", "192.168.1.100"
-# start config, "centos/7",                "centos", "192.168.1.101"
+# start config, "baremettle/ubuntu-14.04", "ubuntu", "192.168.1.100"
+  start config, "centos/7",                "centos", "192.168.1.101"
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "test.yml"

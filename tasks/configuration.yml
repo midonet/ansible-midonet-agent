@@ -8,6 +8,13 @@
   retries: 5
   delay: 10
 
+- name: Configure MAX_HEAP_SIZE for JVM
+  lineinfile:
+    dest: /etc/midolman/midolman-env.sh
+    regexp: ^MAX_HEAP_SIZE=
+    line: MAX_HEAP_SIZE="{{ max_heap_size }}"
+    state: present
+
 - name: Create midonetrc
   template: src=midonetrc.j2 dest=/root/.midonetrc owner=root group=root
   become: yes
