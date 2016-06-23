@@ -1,6 +1,6 @@
 ---
 
-- hosts: compute
+- hosts: agent
   remote_user: root
   become: True
   tasks:
@@ -8,7 +8,7 @@
       apt_repository: repo='ppa:openjdk-r/ppa'
       when: "ansible_distribution_release == 'trusty'"
 
-- hosts: compute
+- hosts: agent
   remote_user: root
   become: True
   roles:
@@ -23,7 +23,7 @@
     - role: abelboldu.midonet-repos
       midonet_version: current
     - role: abelboldu.zookeeper
-      zookeeper_hosts: '{{ groups["compute"] }}'
+      zookeeper_hosts: '{{ groups["agent"] }}'
     - role: ansible-midonet-agent
-      zookeeper_hosts: '{{ groups["compute"] }}'
+      zookeeper_hosts: '{{ groups["agent"] }}'
       cluster_password: 'midonet'
