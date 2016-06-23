@@ -1,8 +1,9 @@
 Vagrantfile
 ===========
 
-Before running `vagrant up`, make sure only `ubuntu` box is getting used and 
-`centos` box has been commented out in Vagrantfile. The reason is, this
-`ansible-midonet-agent` role depends upon `abelboldu.zookeeper` role and that
-role does not have zookeeper installation steps added for RedHat. So until those
-steps get added, only use `ubuntu` box for testing.
+Only use one box, either 'ubuntu' or 'centos', for testing. Since there is no 
+way right now to access `ansible_default_ipv4` address of one machine from 
+another, we will need to use only one box at a time for testing. So until a 
+feasible solution is found, comment out either `ubuntu` or `centos` box in 
+Vagrantfile and run `vagrant up` or just run either `vagrant up ubuntu` or 
+`vagrant up centos`.
