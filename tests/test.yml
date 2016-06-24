@@ -29,12 +29,10 @@
       cluster_password: 'midonet'
       max_heap_size: "512M"
   post_tasks:
-    - name: Check java process is running
-      shell: ps auxf | grep java
-      register: command_result_java
-      failed_when: "'java' not in command_result_java.stdout"
-
-    - name: Check midolman process is running
-      shell: ps auxf | grep midolman
-      register: command_result_midolman
-      failed_when: "'midolman' not in command_result_midolman.stdout"
+    - name: Check java and midolman processes are running
+      shell: ps auxf | grep {{ item }}
+      register: command_result
+      failed_when: "'{{ item }}' not in command_result.stdout"
+      with_items:
+        - java
+        - midolman
