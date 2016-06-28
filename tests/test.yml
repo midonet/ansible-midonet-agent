@@ -33,6 +33,7 @@
       shell: ps auxf | grep {{ item }}
       register: command_result
       failed_when: "'{{ item }}' not in command_result.stdout"
+      changed_when: False
       with_items:
         - java
         - midolman
