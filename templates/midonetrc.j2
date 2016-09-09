@@ -1,5 +1,5 @@
 [cli]
-api_url = "http://{{ cluster_hostname }}:{{ cluster_port }}/midonet-api"
-username = "{{ cluster_username }}"
-password = "{{ cluster_password }}"
-project_id = "{{ cluster_project }}"
+api_url = http://'{{ midonet_agent_cluster_hostname }}':'{{ midonet_agent_cluster_port }}'/midonet-api
+username = '{{ midonet_agent_cluster_username }}'
+password = '{{ midonet_agent_cluster_password }}'
+project_id = '{{ midonet_agent_cluster_project }}'

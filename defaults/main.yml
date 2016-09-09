@@ -1,11 +1,11 @@
 ---
 
-cluster_hostname: localhost
-tunnel_ip: "{{ ansible_default_ipv4 }}"
-tz_type: vxlan
-cluster_username: admin
-cluster_project: admin
-cluster_port: 8181
-agent_template: agent-compute-medium
-mem_jmxscraper: False
-max_heap_size: "2048M"
+midonet_agent_cluster_hostname: 'localhost'
+midonet_agent_tunnel_ip: '{{ ansible_default_ipv4 }}'
+midonet_agent_tz_type: 'vxlan'
+midonet_agent_cluster_username: 'admin'
+midonet_agent_cluster_project: 'admin'
+midonet_agent_cluster_password: 'midonet'
+midonet_agent_cluster_port: 8181
+midonet_agent_agent_template: 'agent-compute-medium'
+midonet_agent_max_heap_size: '2048M'

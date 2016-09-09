@@ -1,5 +1,6 @@
 ---
 
 - name: Restart midolman
-  service: name=midolman state=restarted
-
+  service:
+    name: midolman
+    state: restarted
