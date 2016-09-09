@@ -1,10 +1,14 @@
 ---
 
 - name: Basic midolman.conf
-  template: src=midolman.conf.j2 dest=/etc/midolman/midolman.conf owner=root group=root
+  template:
+    src: midolman.conf.j2
+    dest: /etc/midolman/midolman.conf
+    owner: root
+    group: root
 
 - name: Apply host template (this node only)
-  shell: mn-conf template-set -h local -t "{{ agent_template }}"
+  shell: mn-conf template-set -h local -t "{{ midonet_agent_agent_template }}"
   retries: 5
   delay: 10
 
@@ -12,11 +16,14 @@
   lineinfile:
     dest: /etc/midolman/midolman-env.sh
     regexp: ^MAX_HEAP_SIZE=
-    line: MAX_HEAP_SIZE="{{ max_heap_size }}"
+    line: MAX_HEAP_SIZE="{{ midonet_agent_max_heap_size }}"
     state: present
 
 - name: Create midonetrc
-  template: src=midonetrc.j2 dest=/root/.midonetrc owner=root group=root
-  become: yes
+  template:
+    src: midonetrc.j2
+    dest: /root/.midonetrc
+    owner: root
+    group: root
   notify:
     - Restart midolman

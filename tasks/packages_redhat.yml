@@ -1,11 +1,9 @@
 ---
 
 - name: Install Midolman
-  yum: name={{ item }} state=present
+  yum:
+    name: '{{ item }}'
+    state: present
   with_items:
     - midolman
     - python-midonetclient
-
-- name: Install MEM jmxscraper
-  yum: name=midonet-jmxscraper state=present
-  when: mem_jmxscraper
