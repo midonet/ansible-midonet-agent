@@ -1,7 +1,7 @@
 ---
 
 midonet_agent_cluster_hostname: 'localhost'
-midonet_agent_tunnel_ip: '{{ ansible_default_ipv4 }}'
+midonet_agent_tunnel_ip: '{{ ansible_default_ipv4.address }}'
 midonet_agent_tzone_type: 'vxlan'
 midonet_agent_cluster_username: 'midonet'
 midonet_agent_cluster_project: 'service'
