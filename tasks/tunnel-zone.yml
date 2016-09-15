@@ -29,3 +29,5 @@
   shell: "midonet-cli -e tunnel-zone {{ midonet_tzone.stdout }} add member host {{ midonet_hostid.stdout }} address {{ midonet_agent_tunnel_ip }}"
   when:
     - midonet_tzone_member_exists | failed
+  retries: 5
+  delay: 10
