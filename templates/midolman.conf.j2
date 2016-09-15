@@ -1,6 +1,6 @@
 [zookeeper]
 {% if zk_iface is not defined %}
-zookeeper_hosts = "{% for host in zookeeper_hosts %}{{ hostvars[host]['ansible_fqdn'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
+zookeeper_hosts = "{% for host in zookeeper_hosts %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 {% else %}
 zookeeper_hosts = "{% for host in zookeeper_hosts %}{{ hostvars[host][zk_iface]['ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 {% endif %}
