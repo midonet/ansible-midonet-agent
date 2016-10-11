@@ -3,18 +3,19 @@ galaxy_info:
   author: Abel Boldú
   description: MidoNet agent role for compute and gateway nodes.
   company: Midokura
-  min_ansible_version: 1.6
+  min_ansible_version: 2.0
+  license: Apache
   platforms:
   - name: EL
     versions:
-    - 6
     - 7
   - name: Ubuntu
     versions:
     - precise
     - trusty
+    - xenial
   categories:
   - cloud
-  - database
+  - networking
   dependencies:
   - abelboldu.midonet-repos
