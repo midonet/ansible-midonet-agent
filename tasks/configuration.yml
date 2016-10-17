@@ -9,6 +9,7 @@
 
 - name: Apply host template (this node only)
   shell: mn-conf template-set -h local -t "{{ midonet_agent_agent_template }}"
+  changed_when: False
   retries: 5
   delay: 10
 

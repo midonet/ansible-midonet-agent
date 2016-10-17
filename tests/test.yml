@@ -1,32 +1,26 @@
 ---
 
-- hosts: agent
-  remote_user: root
+- hosts: all
   become: True
-  tasks:
-    - name: Install repo for Java 8 in Ubuntu 14.04
-      apt_repository: repo='ppa:openjdk-r/ppa'
-      when: "ansible_distribution_release == 'trusty'"
 
-- hosts: agent
-  remote_user: root
-  become: True
   roles:
-    - role: geerlingguy.java
-      when: "ansible_os_family == 'Debian'"
-      java_packages:
-        - openjdk-8-jdk
-    - role: geerlingguy.java
-      when: "ansible_os_family == 'RedHat'"
-      java_packages:
-        - java-1.8.0-openjdk
-    - role: abelboldu.midonet-repos
-      midonet_version: current
-    - role: abelboldu.zookeeper
-      zookeeper_hosts: '{{ groups["agent"] }}'
+    - role: midonet-repo
+
+    - role: zookeeper
+      zookeeper_hosts:
+        - '{{ inventory_hostname }}'
+
+    - role: cassandra
+      cassandra_hosts:
+        - '{{ inventory_hostname }}'
+
     - role: ansible-midonet-agent
-      zookeeper_hosts: '{{ groups["agent"] }}'
-      midonet_agent_max_heap_size: "1024M"
+      zookeeper_hosts:
+        - '{{ inventory_hostname }}'
+      cassandra_hosts:
+        - '{{ inventory_hostname }}'
+      midonet_cluster_max_heap_size: "512M"
+
   post_tasks:
     - name: Check java and midolman processes are running
       shell: ps auxf | grep {{ item }}
