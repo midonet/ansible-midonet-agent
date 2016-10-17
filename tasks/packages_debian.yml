@@ -1,17 +1,10 @@
 ---
 
-- name: Install PPA for Java8
-  apt_repository:
-    repo: 'ppa:openjdk-r'
-
 - name: Install Midolman
   apt:
-    name: midolman
-    state: latest
-    install_recommends: False
-    update_cache: yes
-
-- name: Install midonet client
-  apt:
-    name: python-midonetclient
+    name: '{{ item }}'
     state: present
+  with_items:
+    - 'midolman'
+    - 'netcat-openbsd'
+    - 'python-midonetclient'

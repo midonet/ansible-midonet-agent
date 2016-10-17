@@ -29,7 +29,7 @@ end
 
 def set_hardware(config, provider)
   config.vm.provider provider do |machine|
-    machine.memory = 2048
+    machine.memory = 3072
     machine.cpus = 1
   end
 end

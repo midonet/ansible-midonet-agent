@@ -14,19 +14,16 @@
       cassandra_hosts:
         - '{{ inventory_hostname }}'
 
-    - role: ansible-midonet-agent
+    - role: midonet-cluster
       zookeeper_hosts:
         - '{{ inventory_hostname }}'
       cassandra_hosts:
         - '{{ inventory_hostname }}'
       midonet_cluster_max_heap_size: "512M"
 
-  post_tasks:
-    - name: Check java and midolman processes are running
-      shell: ps auxf | grep {{ item }}
-      register: command_result
-      failed_when: "'{{ item }}' not in command_result.stdout"
-      changed_when: False
-      with_items:
-        - java
-        - midolman
+    - role: ansible-midonet-agent
+      zookeeper_hosts:
+        - '{{ inventory_hostname }}'
+      cassandra_hosts:
+        - '{{ inventory_hostname }}'
+      midonet_agent_max_heap_size: "512M"

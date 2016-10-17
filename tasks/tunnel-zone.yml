@@ -1,32 +1,32 @@
 ---
 
 - name: Check if tunnel zone exists
-  shell: "midonet-cli -e tunnel-zone list | grep {{ midonet_agent_tzone_name }}"
-  register: midonet_tzone_exists
+  shell: 'midonet-cli -e tunnel-zone list | grep {{ midonet_agent_tzone_name }}'
   failed_when: midonet_tzone_exists.rc >= 2
+  register: midonet_tzone_exists
 
 - name: Create tunnel zone
-  shell: "midonet-cli -e tunnel-zone create name {{ midonet_agent_tzone_name }} type {{ midonet_agent_tzone_type }} "
+  shell: 'midonet-cli -e tunnel-zone create name {{ midonet_agent_tzone_name }} type {{ midonet_agent_tzone_type }} '
   when: midonet_tzone_exists | failed
 
 - name: Get tunnel zone id
-  shell: "midonet-cli -e tunnel-zone list | grep {{ midonet_agent_tzone_name }} | cut -d ' ' -f 2"
+  shell: 'midonet-cli -e tunnel-zone list | grep {{ midonet_agent_tzone_name }} | cut -d " " -f 2'
   register: midonet_tzone
 
 - name: Get host id
-  shell: "midonet-cli -e host list | grep {{ ansible_hostname }} | cut -d ' ' -f 2"
+  shell: 'midonet-cli -e host list | grep {{ ansible_hostname }} | cut -d " " -f 2'
   register: midonet_hostid
-  until: midonet_hostid.stdout != ""
+  until: midonet_hostid.stdout != ''
   retries: 5
   delay: 10
 
 - name: Check if host is already in tunnel zone
-  shell: "midonet-cli -e tunnel-zone {{ midonet_tzone.stdout }} list member | grep {{ midonet_hostid.stdout }}"
+  shell: 'midonet-cli -e tunnel-zone {{ midonet_tzone.stdout }} list member | grep {{ midonet_hostid.stdout }}'
   register: midonet_tzone_member_exists
   failed_when: midonet_tzone_member_exists.rc >= 2
 
 - name: Add host to tunnel zone
-  shell: "midonet-cli -e tunnel-zone {{ midonet_tzone.stdout }} add member host {{ midonet_hostid.stdout }} address {{ midonet_agent_tunnel_ip }}"
+  shell: 'midonet-cli -e tunnel-zone {{ midonet_tzone.stdout }} add member host {{ midonet_hostid.stdout }} address {{ midonet_agent_tunnel_ip }}'
   when:
     - midonet_tzone_member_exists | failed
   retries: 5

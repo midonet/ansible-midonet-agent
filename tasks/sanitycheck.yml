@@ -1,0 +1,10 @@
+---
+
+- name: Make sure that midolman is alive
+  command: 'nc -U /var/run/midolman/midolman.sock'
+  always_run: True
+  changed_when: False
+  delay: 10
+  register: midonet_agent_netcat_sock
+  retries: 18
+  until: midonet_agent_netcat_sock|success

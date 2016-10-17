@@ -8,4 +8,4 @@ midonet_agent_cluster_project: 'service'
 midonet_agent_cluster_password: 'midonet_default_pass'
 midonet_agent_cluster_port: 8181
 midonet_agent_agent_template: 'agent-compute-medium'
-midonet_agent_max_heap_size: '2048M'
+midonet_agent_max_heap_size: '512M'

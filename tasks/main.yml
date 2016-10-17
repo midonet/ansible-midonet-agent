@@ -1,11 +1,20 @@
 ---
 
-- meta: flush_handlers
 - include: packages_redhat.yml
   when: ansible_os_family == 'RedHat'
+
 - include: packages_debian.yml
   when: ansible_os_family == 'Debian'
+
 - include: configuration.yml
+
+- include: services.yml
+
 - meta: flush_handlers
+
+- include: sanitycheck.yml
+
 - include: tunnel-zone.yml
-  when: midonet_agent_tzone_name is defined and midonet_agent_tzone_type is defined
+  when:
+    - midonet_agent_tzone_name is defined
+    - midonet_agent_tzone_type is defined
