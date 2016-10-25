@@ -8,3 +8,6 @@
 
 - name: 'cassandra'
   src: 'https://github.com/midonet/ansible-cassandra'
+
+- name: 'midonet-cluster'
+  src: 'https://github.com/midonet/ansible-midonet-cluster'

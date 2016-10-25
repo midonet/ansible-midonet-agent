@@ -1,0 +1,7 @@
+---
+
+- name: Start and enable midolman
+  service:
+    enabled: True
+    name: 'midolman'
+    state: started

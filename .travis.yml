@@ -16,6 +16,11 @@ python:
 sudo: 'required'
 
 
+before_install:
+  - 'echo "nameserver 8.8.8.8" | sudo -EH tee -a /etc/resolvconf/resolv.conf.d/tail > /dev/null'
+  - 'echo "nameserver 8.8.4.4" | sudo -EH tee -a /etc/resolvconf/resolv.conf.d/tail > /dev/null'
+  - 'sudo -EH resolvconf -u'
+
 install:
   # Install test requirements
   - 'pip install -r requirements-devel.txt'

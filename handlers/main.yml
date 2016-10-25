@@ -2,5 +2,5 @@
 
 - name: Restart midolman
   service:
-    name: midolman
+    name: 'midolman'
     state: restarted
