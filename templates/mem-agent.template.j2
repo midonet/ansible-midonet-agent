@@ -1,0 +1,5 @@
+agent.flow_history.enabled : {{ midonet_agent_flow_history_enabled|ternary('true','false') }}
+agent.flow_history.encoding : "{{ midonet_agent_flow_history_encoding }}"
+agent.flow_history.udp_endpoint : "{{ midonet_agent_flow_history_udp_endpoint }}"
+jmxscraper.enabled : {{ midonet_agent_jmxscraper_enabled|ternary('true','false') }}
+jmxscraper.target.udp_endpoint : "{{ midonet_agent_jmxscraper_target_udp_endpoint }}"

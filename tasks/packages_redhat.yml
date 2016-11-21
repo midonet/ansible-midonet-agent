@@ -8,3 +8,24 @@
     - 'midolman'
     - 'nmap-ncat'
     - 'python-midonetclient'
+
+- block:
+    - name: 'ansible-midonet-insights-analytics.tasks.packages_redhat: Add repository for lldpd'
+      copy:
+        dest: '/{{ item }}'
+        group: 'root'
+        mode: 0644
+        owner: 'root'
+        src: '{{ item }}'
+      with_items:
+        - 'etc/yum.repos.d/home:vbernat.repo'
+
+    - name: Install MidoNet JMXScraper
+      yum:
+        name: '{{ item }}'
+        state: present
+      when: midonet_agent_mem_enabled
+      with_items:
+        - 'lldpd'
+        - 'midonet-jmxscraper'
+  when: midonet_agent_mem_enabled

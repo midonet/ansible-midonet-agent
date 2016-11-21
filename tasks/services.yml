@@ -5,3 +5,10 @@
     enabled: True
     name: 'midolman'
     state: started
+
+- name: Start and enable MidoNet JMXScraper
+  service:
+    enabled: True
+    name: 'midonet-jmxscraper'
+    state: started
+  when: midonet_agent_mem_enabled
