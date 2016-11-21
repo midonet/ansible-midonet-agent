@@ -8,3 +8,12 @@
     - 'midolman'
     - 'netcat-openbsd'
     - 'python-midonetclient'
+
+- name: Install MidoNet JMXScraper
+  apt:
+    name: '{{ item }}'
+    state: present
+  when: midonet_agent_mem_enabled
+  with_items:
+    - 'lldpd'
+    - 'midonet-jmxscraper'

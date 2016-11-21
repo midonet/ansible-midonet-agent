@@ -16,6 +16,24 @@
   retries: 5
   until: midonet_agent_mn_conf_template_set|success
 
+- block:
+    - name: mn-conf mem-agent template
+      template:
+        dest: '/etc/midonet/mem-agent.template'
+        group: 'root'
+        mode: 0644
+        owner: 'root'
+        src: 'mem-agent.template.j2'
+
+    - name: Apply mem-agent mn-conf template
+      shell: 'cat /etc/midonet/mem-agent.template | mn-conf set -t default'
+      changed_when: False
+      delay: 10
+      register: midonet_agent_mn_conf_set_mem_agent_template
+      retries: 5
+      until: midonet_agent_mn_conf_set_mem_agent_template|success
+  when: midonet_agent_mem_enabled
+
 - name: Configure MAX_HEAP_SIZE for JVM
   lineinfile:
     dest: '/etc/midolman/midolman-env.sh'

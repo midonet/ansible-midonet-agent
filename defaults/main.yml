@@ -1,5 +1,6 @@
 ---
 
+midonet_agent_mem_enabled: False
 midonet_agent_cluster_hostname: 'localhost'
 midonet_agent_tunnel_ip: '{{ ansible_default_ipv4.address }}'
 midonet_agent_tzone_type: 'vxlan'
@@ -9,3 +10,8 @@ midonet_agent_cluster_password: 'midonet_default_pass'
 midonet_agent_cluster_port: 8181
 midonet_agent_agent_template: 'agent-compute-medium'
 midonet_agent_max_heap_size: '512M'
+midonet_agent_flow_history_enabled: True
+midonet_agent_flow_history_encoding: 'binary'
+midonet_agent_flow_history_udp_endpoint: 'localhost:5001'
+midonet_agent_jmxscraper_enabled: True
+midonet_agent_jmxscraper_target_udp_endpoint: 'localhost:5000'
