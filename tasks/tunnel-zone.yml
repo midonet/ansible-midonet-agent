@@ -14,7 +14,7 @@
   register: midonet_tzone
 
 - name: Get host id
-  shell: 'midonet-cli -e host list | grep {{ ansible_hostname }} | cut -d " " -f 2'
+  shell: "midonet-cli -e host list | grep {{ ansible_hostname }} alive | cut -d ' ' -f 2"
   register: midonet_hostid
   until: midonet_hostid.stdout != ''
   retries: 5
